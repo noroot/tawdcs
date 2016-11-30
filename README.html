@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<title>README.html</title>
+
+</head>
+
+<body>
+
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LC_ALL = (unset),
+	LANG = "en_RU.UTF-8"
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+<h1>TAWDCS.NET</h1>
+
+<p>TAWDCS - a community of combat simulator pilots, dedicated to having loads of fun while trying to simulate being a combat pilot at an extremely high level. We fly as a team, train as a team and improve our skills on a daily basis to be ready for the most realistic air combat experience a simulator pilot can achieve.</p>
+
+<p>This is Wordpress based site of TAWDCS community.</p>
+
+<h2>REQUIREMENTS</h2>
+
+<ul>
+<li>Linux based OS</li>
+<li>nodejs with npm</li>
+<li>rvm with ruby</li>
+<li>php > 5.5</li>
+<li>php-fpm</li>
+<li>nginx</li>
+<li>mysql > 5</li>
+</ul>
+
+<h2>SETUP FOR DEVELOPMENT</h2>
+
+<ul>
+<li><code>git checkout</code> </li>
+<li><code>bundle install</code></li>
+<li><code>npm install</code></li>
+</ul>
+
+<p>Add "127.0.0.1 local.tawdcs.net" to /etc/hosts</p>
+
+<p>Start local php server
+* <code>export WP_ENV=local</code>
+* <code>./runserver.sh dev</code></p>
+
+<p>Start gulp with SASS watchdog
+* <code>cd public/wp-content/tawdcs/</code>
+* <code>gulp watch</code></p>
+
+<h2>DEPLOYMENT</h2>
+
+<p>Capistrano is used to deploy this Wordpress project. 
+See capistrano manual to understand how it works.</p>
+
+<p><code>bundle exec cap production deploy</code></p>
+
+</body>
+</html>

@@ -1,0 +1,85 @@
+# --------------------
+# OSX Files
+# --------------------
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+.Spotlight-V100
+.Trashes
+
+# --------------------
+# IntelliJ Files
+# --------------------
+*.iml
+*.ipr
+*.iws
+.idea/
+
+# --------------------
+# Netbeans Files
+# --------------------
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+nbactions.xml
+nb-configuration.xml
+
+# --------------------
+# Node Files
+# --------------------
+.nodemonignore
+npm-debug.log
+node_modules/
+
+# --------------------
+# SASS Files
+# --------------------
+.sass-cache/
+
+# --------------------
+# Bower Files
+# --------------------
+.bower-*/
+bower_components
+
+# --------------------
+# Composer Files
+# --------------------
+vendor/
+
+# --------------------
+# App Files
+# --------------------
+test/coverage/
+modules/public/
+modules/views/
+/public/build/
+
+# --------------------
+# Gulp build
+# --------------------
+
+# --------------------
+# Capistrano metrics
+# --------------------
+.capistrano/
+
+# composer ignores
+# vendor/
+
+# public/config/wp-config-*.php
+public/config/wp-config-local.php
+wp-cli.phar
+
+public/wp-content/debug.log
+# public/wp-content/uploads/*
+
+# ----------------------------
+# PHP config
+# ----------------------------
+public/info.php
+public/config/local.php

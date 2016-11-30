@@ -1,0 +1,113 @@
+// This is an empty scss file for your custom styles - Please add your super duper awesome mega design styles here
+
+html {
+  background: url(https://static.dvidshub.net/media/thumbs/photos/1411/1650677/2000x1331_q95.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.navbar-nav > li{
+  padding-left:30px;
+  padding-right:30px;
+}
+
+.navbar-nav li a {
+  line-height: 100px;
+}
+
+
+.nav-link {
+  color: $taw-menu-color;
+  font-size: 25px;
+  font-weight: normal;
+  text-transform: uppercase;
+}
+
+.navbar-gs {
+  .navbar-toggle {
+    border:1px solid #000;
+  }
+  .icon-bar {
+    border-bottom:1px solid #000;
+  }
+  .dropdown-menu {
+    background-color: $taw-menu-color;
+  }
+}
+
+.jumbotron {
+  background-color: #424242;
+  background-image: linear-gradient( rgba(0,0,0,.5), rgba(0,0,0,.5) ), url(/wp-content/themes/tawdcs/images/f15-nevada.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+  
+.navbar-brand {
+  cursor: pointer;
+}
+  
+.taw-container {
+  padding-top: 25px;
+}
+
+.taw-logo-text-block {
+  padding-top: 40px; 
+  padding-left: 105px;
+}
+
+.taw-logo-text {
+    vertical-align: middle;
+}
+
+.taw-logo-image {
+  width: 100px;
+  height: 100px;
+  vertical-align: middle;
+}
+
+.taw-text-footer {
+  font-size: 13px;
+}
+
+.taw-text-small {
+  //font-size: 13px;
+}
+
+.taw-row {
+  padding-bottom: 10px;
+}
+
+.taw-footer-row {
+  background-color: #292929;
+  color: gray;
+  padding: 10px;
+}
+
+.taw-wrapper {
+  padding-top: 0px;
+
+}
+
+.taw-page-header {
+  padding-bottom: 15px;
+}
+
+.taw-text-indent {
+  margin-left: 15px;
+}
+  
+.widget_search {
+  padding-bottom: 15px;
+}
+.post {
+  padding-bottom: 15px;
+}
+
+.entry-header {
+  padding-bottom: 15px;
+}
+  
