@@ -83,3 +83,4 @@ public/wp-content/debug.log
 # ----------------------------
 public/info.php
 public/config/local.php
+public/wp-content/uploads

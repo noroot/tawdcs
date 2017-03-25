@@ -49,10 +49,9 @@
 		                                	<?php //bloginfo( 'name' ); ?>
 		                                </a>
 	                                <?php } else { the_custom_logo(); } ?><!-- end custom logo -->
-
+					
 					<a class="navbar-brand" OnClick="document.location.href='/'">
 					    <img src="/wp-content/themes/tawdcs/images/sealoftaw.png" class="taw-logo-image" align="left" title="TAW DCS" />
-			
 					    <div class="taw-logo-text-block" OnClick="document.location.href='/'">
 						<div class=taw-logo-text">TAW DCS</div>
 						<!-- <div class="gs-logo-text" style="vertical-align:middle">DCS</div> -->
