@@ -47,7 +47,6 @@
 
 <?php wp_footer(); ?>
 <script src="https://apis.google.com/js/platform.js"></script>
-§
 <footer class="footer">
     <div class="container">
         <p class="text-muted">TAW DCS Flight simulator community. <span class="sep"> | </span> 	All rights reserved. Copying without backlinking prohibited. &copy;2017 <span class="sep"> | Website by Dutch Baron, OverG and Overdude</span> </p>
