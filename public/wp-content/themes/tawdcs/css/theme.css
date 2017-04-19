@@ -1,5 +1,5 @@
 @charset "UTF-8";
-@import url("https://fonts.googleapis.com/css?family=Exo");
+@import url("https://fonts.googleapis.com/css?family=Exo:400,700");
 /*!
  * Bootstrap v4.0.0-alpha.5 (https://getbootstrap.com)
  * Copyright 2011-2016 The Bootstrap Authors
@@ -7620,3 +7620,7 @@ html {
 
 .entry-header {
   padding-bottom: 15px; }
+
+.taw-sq-img {
+  height: 200px !important;
+  width: 200px !important; }
