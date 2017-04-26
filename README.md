@@ -1,5 +1,5 @@
 
-TAWDCS.NET
+TAWDCS.ORG
 =============
 
 TAWDCS - a community of combat simulator pilots, dedicated to having loads of fun while trying to simulate being a combat pilot at an extremely high level. We fly as a team, train as a team and improve our skills on a daily basis to be ready for the most realistic air combat experience a simulator pilot can achieve.
