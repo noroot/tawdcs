@@ -15,7 +15,7 @@ get_header(); ?>
 	<div class="container">
             <h1>Welcome to the TAW Digital Combat Simulator website!</h1>
             <p> We are a community of combat simulator pilots, dedicated to having loads of fun while trying to simulate being a combat pilot at an extremely high level. We fly as a team, train as a team and improve our skills on a daily basis to be ready for the most realistic air combat experience a simulator pilot can achieve.</p>
-            <p><a class="btn btn-primary btn-lg" href="/docs/" role="button">Learn more »</a></p>
+            <p><a class="btn btn-primary btn-lg" href="/taw/" role="button">Learn more »</a></p>
 	</div>
     </div>
     <div class="container taw-container">
@@ -86,17 +86,17 @@ get_header(); ?>
             <div class="col-md-4">
 		<h2>DCS</h2>
 		<p class="taw-text-small">Digital Combat Simulator by Eagle Dynamics is by far the most comprehensive and realistic simulator on the public market, WE LOVE IT!!!! Thank you Eagle Dynamics for your time and effort into this simulator and your continuing development. We fly fighters, strikers and helicopters and have different squadrons setup in our fighting wing division.</p>
-		<p><a class="btn btn-default" href="/docs/" role="button">View details &raquo;</a></p>
+		<p><a class="btn btn-default" href="/taw/" role="button">View details &raquo;</a></p>
             </div>
             <div class="col-md-4">
 		<h2>Squadrons</h2>
 		<p class="taw-text-small">We have divided our team into smaller 'squadrons' who are at a maximum of 8 pilots per team, with a squadron leader to coordinate all its members, also element leads to lead the smaller teams in the squadron. We have a command structure, similar to the USMC, in order to have people fulfill responsibilities to make the lives of our pilots within TAW as much fun as possible.</p>
-		<p><a class="btn btn-default" href="/docs/" role="button">View details &raquo;</a></p>
+		<p><a class="btn btn-default" href="/taw/" role="button">View details &raquo;</a></p>
 	    </div>
             <div class="col-md-4">
 		<h2>TAW</h2>
 		<p class="taw-text-small">This is a place where you can go to if you like to meet possible new friends with the same level of interest in air combat. We have very skilled instructors to train for tactics, systems knowledge, brevity (radio communication) and piloting skills. These guys have loads of experience in all fields of DCS and have proven themselves worthy instructors by dedicating time and effort for the TAW DCS community.</p>
-		<p><a class="btn btn-default" href="/docs/" role="button">View details &raquo;</a></p>
+		<p><a class="btn btn-default" href="/taw/" role="button">View details &raquo;</a></p>
             </div>
 	</div>
 
