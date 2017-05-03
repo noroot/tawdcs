@@ -7546,8 +7546,8 @@ html {
   background-size: cover; }
 
 .navbar-nav > li {
-  padding-left: 20px;
-  padding-right: 20px; }
+  padding-left: 10px;
+  padding-right: 10px; }
 
 .navbar-nav li a {
   line-height: 100px; }
@@ -7594,6 +7594,8 @@ html {
 
 .taw-text-footer {
   font-size: 13px; }
+  .taw-text-footer a:hover {
+    color: white; }
 
 .taw-row {
   padding-bottom: 10px; }

@@ -9,8 +9,8 @@ html {
 }
 
 .navbar-nav > li{
-  padding-left:20px;
-  padding-right:20px;
+  padding-left:10px;
+  padding-right:10px;
 }
 
 .navbar-nav li a {
@@ -45,17 +45,17 @@ html {
   background-size: cover;
 }
 
-  
+
 .navbar-brand {
   cursor: pointer;
 }
-  
+
 .taw-container {
   padding-top: 25px;
 }
 
 .taw-logo-text-block {
-  padding-top: 40px; 
+  padding-top: 40px;
   padding-left: 105px;
 }
 
@@ -70,7 +70,10 @@ html {
 }
 
 .taw-text-footer {
-  font-size: 13px;
+   font-size: 13px;
+   a:hover {
+      color: white;
+   }
 }
 
 .taw-text-small {
@@ -99,7 +102,7 @@ html {
 .taw-text-indent {
   margin-left: 15px;
 }
-  
+
 .widget_search {
   padding-bottom: 15px;
 }
@@ -110,9 +113,8 @@ html {
 .entry-header {
   padding-bottom: 15px;
 }
-  
+
 .taw-sq-img {
    height: 200px!important;
    width: 200px!important;
 }
-  
