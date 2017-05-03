@@ -20,7 +20,7 @@
 		<p class="taw-text-footer">TAWDCS.ORG is a DCS WORLD Division within TAW.net (The Art of Warfare)
 		    <br><br>
 		    Fill in this form for questions, suggestions
-		    or bug reports in missions: <a href="https://goo.gl/forms/6NbbnKyMFdOBTAwi1">CLICK HERE</a></p>	
+		    or bug reports in missions: <a href="https://goo.gl/forms/6NbbnKyMFdOBTAwi1" target="_blank">CLICK HERE</a></p>	
 	    </div>
 	    <div class="col-md-4">
 		<p>Connect With Us!</p>

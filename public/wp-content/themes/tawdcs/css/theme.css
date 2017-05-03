@@ -7596,6 +7596,10 @@ html {
   font-size: 13px; }
   .taw-text-footer a:hover {
     color: white; }
+  .taw-text-footer a:link {
+    color: white; }
+  .taw-text-footer a:visited {
+    color: white; }
 
 .taw-row {
   padding-bottom: 10px; }
