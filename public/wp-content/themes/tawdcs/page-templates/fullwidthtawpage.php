@@ -7,15 +7,20 @@
  * @package understrap
  */
 
+$post_args = [
+    'posts_per_page' => 5
+];
+query_posts($post_args);
+
 get_header(); ?>
 
 <div class="wrapper taw-wrapper" id="full-width-page-wrapper">
 
     <div class="jumbotron">
 	<div class="container">
-            <h1>Welcome to the TAW Digital Combat Simulator website!</h1>
-            <p> We are a community of combat simulator pilots, dedicated to having loads of fun while trying to simulate being a combat pilot at an extremely high level. We fly as a team, train as a team and improve our skills on a daily basis to be ready for the most realistic air combat experience a simulator pilot can achieve.</p>
-            <p><a class="btn btn-primary btn-lg" href="/docs/" role="button">Learn more »</a></p>
+	    <h1>Welcome to the TAW Digital Combat Simulator website!</h1>
+	    <p> We are a community of combat simulator pilots, dedicated to having loads of fun while trying to simulate being a combat pilot at an extremely high level. We fly as a team, train as a team and improve our skills on a daily basis to be ready for the most realistic air combat experience a simulator pilot can achieve.</p>
+	    <p><a class="btn btn-primary btn-lg" href="/category/docs/" role="button">Learn more »</a></p>
 	</div>
     </div>
     <div class="container taw-container">
@@ -46,7 +51,7 @@ get_header(); ?>
 	    </p>
 	    <p>
 		We have very skilled instructors to train for tactics, systems knowledge, brevity (radio communication) and piloting skills. These guys have loads of experience in all fields of DCS and have proven themselves worthy instructors by dedicating time and effort for the TAW DCS community. When a new member wants to join, we do expect this pilot to have at least basic pilot skills and systems knowledge. It is nearly impossible for our instructors to teach every single person the basics, which should easily be learned by reading the manual and doing some searches on the Internet and following all the training sections that DCS itself provides. You have to have a form of discipline in order to be a simulator pilot and be willing to put time and effort into this, not just by asking around, but by reading and understanding the plane/helicopter you want to fly.</p>
-	    
+
 	    <b>THIS IS A SIMULATOR, NOT AN ARCADE GAME.</b>
 
 	    <p>
@@ -70,7 +75,7 @@ get_header(); ?>
 		    <li>Dust Devils (Rotary)</li>
 		    <li>Daggers (M2000C)</li>
 		    <li>Tigers (M2000C)</li>
-		    
+
 		    <li>Squadrons in the 33rd TAW Wing (AMERICA)</li>
 		    <li>Black Knights (F15C)</li>
 		    <li>Tiger Sharks (A10C)</li>
@@ -80,30 +85,54 @@ get_header(); ?>
 
 	</div>
     </div>
+
+    <div class="container taw-container">
+	<div class="row">
+	    <div class="col-md-12">
+		<main id="main" class="site-main" role="main">
+
+		    <?php while ( have_posts() ) : the_post(); ?>
+			<?php get_template_part( 'loop-templates/content', '' ); ?>
+		    <?php endwhile; // end of the loop. ?>
+
+		</main><!-- #main -->
+	    </div>
+	</div>
+	<div class="row">
+	    <div class="col-md-4">
+	    </div>
+	    <div class="col-md-4" align="center">
+		<a href="/category/blog/" class="btn btn-primary" role="button">Read all posts</a>
+	    </div>
+	    <div class="col-md-4">
+
+	    </div>
+	</div>
+    </div>
     <div class="container taw-container">
 	<!-- Example row of columns -->
 	<div class="row">
-            <div class="col-md-4">
+	    <div class="col-md-4">
 		<h2>DCS</h2>
 		<p class="taw-text-small">Digital Combat Simulator by Eagle Dynamics is by far the most comprehensive and realistic simulator on the public market, WE LOVE IT!!!! Thank you Eagle Dynamics for your time and effort into this simulator and your continuing development. We fly fighters, strikers and helicopters and have different squadrons setup in our fighting wing division.</p>
 		<p><a class="btn btn-default" href="/docs/" role="button">View details &raquo;</a></p>
-            </div>
-            <div class="col-md-4">
+	    </div>
+	    <div class="col-md-4">
 		<h2>Squadrons</h2>
 		<p class="taw-text-small">We have divided our team into smaller 'squadrons' who are at a maximum of 8 pilots per team, with a squadron leader to coordinate all its members, also element leads to lead the smaller teams in the squadron. We have a command structure, similar to the USMC, in order to have people fulfill responsibilities to make the lives of our pilots within TAW as much fun as possible.</p>
 		<p><a class="btn btn-default" href="/docs/" role="button">View details &raquo;</a></p>
 	    </div>
-            <div class="col-md-4">
+	    <div class="col-md-4">
 		<h2>TAW</h2>
 		<p class="taw-text-small">This is a place where you can go to if you like to meet possible new friends with the same level of interest in air combat. We have very skilled instructors to train for tactics, systems knowledge, brevity (radio communication) and piloting skills. These guys have loads of experience in all fields of DCS and have proven themselves worthy instructors by dedicating time and effort for the TAW DCS community.</p>
 		<p><a class="btn btn-default" href="/docs/" role="button">View details &raquo;</a></p>
-            </div>
+	    </div>
 	</div>
 
 	<hr>
     </div>
 
-    
+
     <div id="content" class="container">
 	<div class="row taw-row">
 	    <div class="col-md-12">
@@ -143,32 +172,9 @@ get_header(); ?>
 		<?php dynamic_sidebar( 'Hero Slider' ); ?>
 	    </div>
 	</div>
-        
-	   <div id="primary" class="col-md-12 content-area">
 
-            <main id="main" class="site-main" role="main">
-
-                <?php while ( have_posts() ) : the_post(); ?>
-
-                    <?php get_template_part( 'loop-templates/content-taw', 'page' ); ?>
-
-                    <?php
-                        // If comments are open or we have at least one comment, load up the comment template
-                        if ( comments_open() || get_comments_number() ) :
-
-                            comments_template();
-                        
-                        endif;
-                    ?>
-
-                <?php endwhile; // end of the loop. ?>
-
-            </main><!-- #main -->
-           
-	    </div><!-- #primary -->
-        
     </div><!-- Container end -->
-    
+
 </div><!-- Wrapper end -->
 
 <?php get_footer(); ?>
