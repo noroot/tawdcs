@@ -7574,15 +7574,33 @@ html {
   background-position: center;
   background-size: cover; }
 
+.jumbotron-members {
+  background-color: #424242;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(/wp-content/themes/tawdcs/images/members-back-f15.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover; }
+
 .navbar-brand {
   cursor: pointer; }
+
+.taw-vertical-menu {
+  list-style-type: none;
+  margin: 0;
+  padding: 0; }
+  .taw-vertical-menu li a {
+    display: block;
+    width: 160px; }
 
 .taw-container {
   padding-top: 25px; }
 
 .taw-logo-text-block {
-  padding-top: 40px;
+  padding-top: 38px;
   padding-left: 105px; }
+
+.taw-member-zone-stripe {
+  color: yellow; }
 
 .taw-logo-text {
   vertical-align: middle; }
