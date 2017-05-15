@@ -30,10 +30,9 @@
 	    </div>
 	    <div class="col-md-4">
 		<p class="taw-text-footer">
-		    Thank you for visiting our website at TAWDCS.ORG<br>
-		    If you wish to join our awesome team of dedicated DCS pilots, click here.<br>
-		    We are proud to be part of TAW.NET<br>
-		    TAW is not responsible for any content or comments on this website.
+		    <p>Thank you for visiting our website at TAWDCS.ORG</p>
+		    <p>We are proud to be part of TAW.NET</p>
+		    <p>TAW is not responsible for any content or comments on this website.</p>
 		</p>
 	    </div>
 	</div>

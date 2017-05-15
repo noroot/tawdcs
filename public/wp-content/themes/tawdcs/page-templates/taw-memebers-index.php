@@ -13,7 +13,7 @@ get_header(); ?>
     <div class="container taw-container">
 	<div class="row">
 	    <div class="col-md-12">
-		<h3 class="taw-member-zone-stripe">- Members zone - Members zone - Members zone - Members zone - Members zone -</h3>
+		<img src="https://tawdcs.org/wp-content/uploads/2017/03/TAW-NOTAM-transparant.png" />
 	    </div>
 	</div>
     </div>

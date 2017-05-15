@@ -117,6 +117,15 @@ html {
   background-color: #292929;
   color: gray;
   padding: 10px;
+  a {
+      color: #eee;
+  }
+  a:hover {
+     color: #eee;
+  }
+  a:link {
+     color: #eee;
+  }
 }
 
 .taw-wrapper {
@@ -127,6 +136,7 @@ html {
 .taw-page-header {
   padding-bottom: 15px;
 }
+
 
 .taw-text-indent {
   margin-left: 15px;

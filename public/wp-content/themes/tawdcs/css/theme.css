@@ -7626,6 +7626,12 @@ html {
   background-color: #292929;
   color: gray;
   padding: 10px; }
+  .taw-footer-row a {
+    color: #eee; }
+  .taw-footer-row a:hover {
+    color: #eee; }
+  .taw-footer-row a:link {
+    color: #eee; }
 
 .taw-wrapper {
   padding-top: 0px; }
