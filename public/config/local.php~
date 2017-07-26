@@ -1,0 +1,25 @@
+<?php
+define('DB_NAME', 'tawdcsdb');
+define('CONCATENATE_SCRIPTS', false );
+define('DISABLE_WP_CRON', true);
+define('DB_USER', 'tawdcs');
+define('DB_PASSWORD', 'qazwsxedc');
+define('DB_HOST', '192.168.1.106');
+//define('DB_HOST', '10.0.0.131');
+define('DB_CHARSET', 'utf8');
+define('DB_COLLATE', '');
+
+define('AUTH_KEY',         '4XMK1UqzsDMDXfO9NO8wWXuZEkTprZw3');
+define('SECURE_AUTH_KEY',  '3t4zH4Huf7EzyS4WS8ijEM2gc2p7ZXyp');
+define('LOGGED_IN_KEY',    '7RQ88EDMA5rGkYby3hFLAw3YQhj5Rkpv');
+define('NONCE_KEY',        '5EJxfOtQPFKDDeO5eIhGoPFc5pEgOR0T');
+define('AUTH_SALT',        '7OKts7cb1rGaaokokJgbCaEnW2U3K0o3');
+define('SECURE_AUTH_SALT', 'WbjdCYBCN0TCdV7aVtbgNrJzXJiYM9jX');
+define('LOGGED_IN_SALT',   'O0xxSiSavEbkCA3gnh9TiiYQ8MdBcR2D');
+define('NONCE_SALT',       'Ho3z4ouQ7gp4y9lZApTxbd7vDgdtrdog');
+
+$table_prefix  = 'wp_';
+
+define ('WPLANG', 'en_US');
+
+define('WP_DEBUG', false);
