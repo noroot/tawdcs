@@ -21,7 +21,7 @@ Icon
 # Netbeans Files
 # --------------------
 nbproject/private/
-build/
+# build/
 nbbuild/
 dist/
 nbdist/
