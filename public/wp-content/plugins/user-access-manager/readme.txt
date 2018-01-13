@@ -3,51 +3,51 @@ Contributors: GM_Alex
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=1947052
 Tags: admin, access, member area, members, member, member access, page, pages, post, posts, private, privacy, restrict, user, user access manager, user management
 Requires at least: 4.7
-Tested up to: 4.7.4
-Stable tag: 2.0.3
+Tested up to: 4.9
+Stable tag: 2.1.10
 
 With the "User Access Manager"-plugin you can manage the access to your posts, pages and files.
 
 == Description ==
 
-With the "User Access Manager"-plugin you can manage the access to your posts, pages and files. You only create a user group, put registered users to this and set up the rights for this group. From now on the post/page is only accessible and writable for the specified group. This plugin is useful if you need a member area or a private section at your blog or you want that other people can write at your blog but not everywhere.
-
-Appeal: If it works click the "Works" button, if it don't works click the "Broken" button and report the issue. That is the only way to find bugs and see if the plugin works proper. Thanks.
+The “User Access Manager”-plugin for Wordpress allows you to manage the access of your content. This is useful if you need a member area, a private section at your blog or you want that other people can write at your blog but not everywhere. Including all post type (post, pages etc.), taxonomies (categories etc.) and files by creating user groups. Just assign the content you want to restrict und and your registered users which should have a access to a group. From now on the content is only accessible and writable for the specified group.
 
 <em>Feature list</em>
 
 * User groups
 * Set separate access for readers and editors
 * Set access by user groups
-* Set access by post categories
-* User-defined post/page title (if no access)
-* User-defined post/page text (if no access)
+* Set default user groups
+* Set time based access
+* User-defined post type (posts, pages etc.) title (if no access)
+* User-defined post type (posts, pages etc.) text (if no access)
 * Optional login form (if no access)
 * User-defined comment text (if no access)
-* Hide complete post/page
-* Hide pages in navigation
+* Hide complete post types (posts, pages etc.)
+* Hide elements in the navigation
 * Redirecting users to other pages (if no access)
-* Recursive locking of posts/pages
+* Recursive locking of content
 * Limited access to uploaded files
 * Full integrated at the admin panel
 * Multilingual support
 * Also protect your rss feeds
 * Give access by IP-address
 * Plugin-Api to use the User Access Manager in your on plugins or extend other plugins
+* [UAMPPE](https://wordpress.org/plugins/user-access-manager-private-public-extension/) like behaviour is now build in (Expect negation like !groupName and showprivate and shownotauthorized parameter)
 
 <em>Included languages</em>
 
-See https://translate.wordpress.org/projects/wp-plugins/user-access-manager
+See [https://translate.wordpress.org/projects/wp-plugins/user-access-manager](https://translate.wordpress.org/projects/wp-plugins/user-access-manager)
 
 The documentation can be found here: [https://github.com/GM-Alex/user-access-manager/wiki](https://github.com/GM-Alex/user-access-manager/wiki)
-For support questions please use the support thread here: [https://wordpress.org/support/plugin/user-access-manager](https://wordpress.org/support/plugin/user-access-manager)
 Please report bugs and feature requests here: [https://github.com/GM-Alex/user-access-manager/issues](https://github.com/GM-Alex/user-access-manager/issues)
 If you are a developer and want to contribute please visit [https://github.com/GM-Alex/user-access-manager](https://github.com/GM-Alex/user-access-manager)
+For general questions, like how to setup, best practice and so on please use the support thread here (don't post issues here): [https://wordpress.org/support/plugin/user-access-manager](https://wordpress.org/support/plugin/user-access-manager)
 To stay up-to-date follow me on twitter: [GMAlex on Twitter](http://twitter.com/GM_Alex)
 
 
 == Installation ==
- 
+
 1. Upload the full directory, with the folder, into your wp-content/plugins directory
 1. Activate the plugin through the 'Plugins' menu in WordPress
 1. Enjoy
@@ -58,6 +58,101 @@ To stay up-to-date follow me on twitter: [GMAlex on Twitter](http://twitter.com/
 Here you found the changes in each version.
 
     Version     Date        Changes
+
+    2.1.10      2017/12/15  Fix Posts removed from WP_Query results in Ajax requests for unprivileged users #176
+                            Improve partly download handler
+                            Suppress errors on file delivery
+                            Improve error handling
+                            Change blog switch handling. fixes #194
+                            Fix wrong parameter name. fixes #191
+                            Improve user group sorting. closes #180
+                            Add new redirect type to the login page. closes #155
+                            Add dynamic user groups for exclude object calculation. closes #181
+                            Add filter for getUserUserGroupsForObjectAccess. #closes 157
+                            Make it possible to set a default group for new media files.
+    2.1.9       2017/11/18  Add show content before <!--more--> tag option for all post types
+                            Fix js time input issue
+                            Fix small prepare query issue
+                            Don't switch to edit mode after user group creation #171
+                            Add sortable columns for user groups list #172
+                            Show no access image again instead of broken image
+                            Fix double user group form for media files
+                            Add option to hide the edit page option if the user doesn't have the right to edit this page #174
+    2.1.8       2017/11/07  Add getter for the user group handler fixes #160
+                            Fix multi site file handling issue #159
+    2.1.7       2017/11/01  Improve database update prompt fixes #153
+                            Fix user group selection not saved when adding a new user issue fixes #154
+                            Add none read access option for user groups closes #144
+                            Extend file settings
+                            Add xsendfile support
+    2.1.6       2017/10/20  Fix "Inherited group membership for media attachments" issue #133
+                            Fix traits strict warning #145
+    2.1.5       2017/10/12  Refactor traits
+                            Fix datetime issue with not supported browsers
+    2.1.4       2017/10/10  Fix strict warnings #134
+                            Fix "Unable to select default user group for both page and post" issue #126
+                            Add NGINX reverse proxy handling #117
+                            Improve code
+                            Fix bulk edit issue #135
+                            Fix array filly issue #138
+                            Add database repair tool
+    2.1.3       2017/09/18  Possible fix for custom post types / taxonomies issues
+                            Fix .htaccess deletion issue
+    2.1.2       2017/09/17  Fix issue with not handled taxonomies #123
+    2.1.1       2017/09/16  Fix issue for users with small innodb page size #121
+    2.1.0       2017/09/15  Refactor code
+                            Implement content tags for partly restriction like UAMPPE #84
+                            Add default user groups
+                            Add time based access
+                            Add dynamic user groups #64
+                            Implement caching #75
+                            Allow html as no access content #63 #93
+                            Optimize settings screen #61
+                            Support of partial download #118
+                            Add option to toggle visibility of assigned groups text next to the edit link #111
+                            Fix incorrectly retrieving of a ID for attachments/media #116
+
+    2.0.13      2017/07/26  Add ipv6 support - Fix issue #97
+                            Change "Hide Comments" logic - Fix issue #100
+                            Fix rewrite base issue - Fix issue #107 and #103
+                            Fix vsprintf warning - Fix issue #105
+                            Fix Relevanssi compatibility issue
+                            Fix missing feature picture if file locking is disabled
+
+    2.0.12      2017/06/16  Fix media file group issue #74
+                            Fix broken file includes / excludes
+                            Fix wordpress filter issue
+                            Fix access to own post #95
+
+    2.0.11      2017/05/18  Fix FrontendController::postsPreQuery() expected to be a reference, value given error
+
+    2.0.10      2017/05/17  Fix issue of not saved groups #74
+                            Adjust password lost link #79
+                            Improve attachment access checks #78
+                            Fix not working redirect
+
+    2.0.9       2017/05/13  Improve security #76
+
+    2.0.8       2017/05/08  Fix missing rss feed if protection is disabled #68
+
+    2.0.7       2017/05/07  Fix category tree issues #59
+                            Fix mysql database errors on strict mode #60
+                            Fix possible path issue
+                            Remove settings for post_format post type (which is used for internal propose)
+                            Fix wrong database update prompt
+                            Fix issue with asgaros from #66
+
+    2.0.6       2017/04/28  Improve http error codes #24
+                            Fix wrong url on windows servers #53
+                            Fix missing install routine #51
+
+    2.0.5       2017/04/27  Fix switch_to_blog issue
+                            Fix file handling issues
+
+    2.0.4       2017/04/26  Adjust code so that php version is checked before throwing a fatal error
+                            Improve login form #26
+                            Fix soliloquy slider incompatibility #31
+                            Improve performance #41
 
     2.0.3       2017/04/25  Fix compatibility issue with CMS Tree Page View plugin #37
                             Fix compatibility issue with SEO Redirection plugin #38
@@ -292,7 +387,7 @@ Here you found the changes in each version.
 
 == Frequently Asked Questions ==
 
-See: https://github.com/GM-Alex/user-access-manager/wiki/FAQ
+See: [https://github.com/GM-Alex/user-access-manager/wiki/FAQ](https://github.com/GM-Alex/user-access-manager/wiki/FAQ)
 
 == Screenshots ==
 

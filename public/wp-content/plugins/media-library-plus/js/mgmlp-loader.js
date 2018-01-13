@@ -1,45 +1,51 @@
-jQuery(document).ready(function(){	
-		        		
-    jQuery("#add-images-to-gallery").click(function(){      
-      jQuery(".mgmlp-folder").removeAttr('checked');  
-      jQuery(".mgmlp-folder").prop("checked", false);
-      jQuery(".mgmlp-folder").prop('disabled', true);
-    });
-								
-    jQuery("#add-new_attachment").click(function(){      
-      jQuery(".mgmlp-folder").prop('disabled', false);
-    });
+jQuery(document).ready(function(){
+	        			
+//    jQuery("#add-images-to-gallery").click(function(){      
+//      jQuery(".mgmlp-folder").removeAttr('checked');  
+//      jQuery(".mgmlp-folder").prop("checked", false);
+//      jQuery(".mgmlp-folder").prop('disabled', true);
+//    });
+//								
+//    jQuery("#add-new_attachment").click(function(){      
+//      jQuery(".mgmlp-folder").prop('disabled', false);
+//    });
     
-    jQuery("#add-new-folder").click(function(){      
-      jQuery(".mgmlp-folder").prop('disabled', false);
-    });
+//    jQuery("#add-new-folder").click(function(){      
+//      jQuery(".mgmlp-folder").prop('disabled', false);
+//    });
     
-    jQuery("#rename-file").click(function(){
-      jQuery(".mgmlp-folder").prop("checked", false);
-      jQuery(".mgmlp-folder").prop('disabled', false);
-      jQuery(".mgmlp-folder").removeAttr('checked');  
-      jQuery(".mgmlp-folder").attr("disabled", true);
-    });
-    
-    jQuery("#copy-files").click(function(){      
-      jQuery(".mgmlp-folder").prop("checked", false);
-      jQuery(".mgmlp-folder").prop('disabled', true);
-    });
-    
-    jQuery("#move-files").click(function(){      
-      jQuery(".mgmlp-folder").prop("checked", false);
-      jQuery(".mgmlp-folder").prop('disabled', true);
-    });
+//    jQuery("#rename-file").click(function(){
+//      jQuery(".mgmlp-folder").prop("checked", false);
+//      jQuery(".mgmlp-folder").prop('disabled', false);
+//      jQuery(".mgmlp-folder").removeAttr('checked');  
+//      jQuery(".mgmlp-folder").attr("disabled", true);
+//    });
+//    
+//    jQuery("#copy-files").click(function(){      
+//      jQuery(".mgmlp-folder").prop("checked", false);
+//      jQuery(".mgmlp-folder").prop('disabled', true);
+//    });
+//    
+//    jQuery("#move-files").click(function(){      
+//      jQuery(".mgmlp-folder").prop("checked", false);
+//      jQuery(".mgmlp-folder").prop('disabled', true);
+//    });
         
     jQuery("#mgmlp-create-new-folder").click(function(){
                 
-      var parent_folder = jQuery('#current-folder-id').val();
+			jQuery("#folder-message").html('');			
+			
+			if(jQuery("#current-folder-id").val() === undefined) 
+	      var parent_folder = sessionStorage.getItem('folder_id');
+			else
+        var parent_folder = jQuery('#current-folder-id').val();
+
       var new_folder_name = jQuery('#new-folder-name').val();
       
       if(new_folder_name.indexOf(' ') >= 0) {
         alert('Folder names cannot contain spaces.');
         return false;
-      } 
+      }       
 			
       if(new_folder_name.indexOf('"') >= 0) {
         alert('Folder names cannot contain single or double quotes.');
@@ -50,7 +56,7 @@ jQuery(document).ready(function(){
         alert('Folder names cannot contain single or double quotes.');
         return false;
       } 
-									
+						
       jQuery("#ajaxloader").show();
       
       jQuery.ajax({
@@ -58,22 +64,32 @@ jQuery(document).ready(function(){
         async: true,
         data: { action: "create_new_folder", parent_folder: parent_folder, new_folder_name: new_folder_name,   nonce: mgmlp_ajax.nonce },
         url : mgmlp_ajax.ajaxurl,
-        dataType: "html",
+        dataType: "json",
         success: function (data) {
+          jQuery("#folder-tree").addClass("bound").on("select_node.jstree", show_mlp_node);							
+				  jQuery('#new-folder-name').val('');	
           jQuery("#ajaxloader").hide();          
-          jQuery("#folder-message").html(data);
+          jQuery("#folder-message").html(data.message);
+					jQuery("#new-folder-area").slideUp(600);
+					if(data.refresh) {
+						jQuery('#folder-tree').jstree(true).settings.core.data = data.folders;						
+						jQuery('#folder-tree').jstree(true).refresh();			
+						jQuery('#folder-tree').jstree('select_node', '#' + parent_folder, true);
+						jQuery('#folder-tree').jstree('toggle_expand', '#' + parent_folder, true );
+				  }
+										
         },
         error: function (err)
           { alert(err.responseText);}
       });
             
     });
-    
+				    
     jQuery("#select-media").click(function(){
       jQuery(".media-attachment, .mgmlp-media").prop("checked", !jQuery(".media-attachment").prop("checked"));
     });
-				
-    jQuery("#restore-fixed-urls").click(function(){      
+		
+		    jQuery("#restore-fixed-urls").click(function(){      
 
       if(confirm("Are you sure you want to retore the old Media records?")) {
 
@@ -114,16 +130,27 @@ jQuery(document).ready(function(){
 				 });
 		 }
     });
-		            
+            
     jQuery("#mgmlp_ajax_upload").click(function(){
-        
-      var folder_id = jQuery('#folder_id').val();      
+        		
+			jQuery("#folder-message").html('');			
+			if(jQuery("#current-folder-id").val() === undefined) 
+	      var folder_id = sessionStorage.getItem('folder_id');
+			else
+        var folder_id = jQuery('#current-folder-id').val();
+			
+			var mlp_title_text = jQuery('#mlp_title_text').val();      
+			var mlp_alt_text = jQuery('#mlp_alt_text').val();      			
+												
+      //var folder_id = jQuery('#folder_id').val();      
       var file_data = jQuery('#fileToUpload').prop('files')[0];   
       var form_data = new FormData();                  
       
       form_data.append('file', file_data);
       form_data.append('action', 'upload_attachment');
       form_data.append('folder_id', folder_id);
+      form_data.append('title_text', mlp_title_text);
+      form_data.append('alt_text', mlp_alt_text);
       form_data.append('nonce', mgmlp_ajax.nonce);
       jQuery("#ajaxloader").show();
       
@@ -143,11 +170,47 @@ jQuery(document).ready(function(){
        });
             
     });
+		
+    jQuery("#mlf-refresh").click(function(){
+        
+			jQuery("#folder-message").html('');			
+				if(jQuery("#current-folder-id").val() === undefined) 
+					var current_folder = sessionStorage.getItem('folder_id');
+				else
+					var current_folder = jQuery('#current-folder-id').val();
+				
+				
+				jQuery.ajax({
+					type: "POST",
+					async: true,
+					data: { action: "mlp_get_folder_data", current_folder_id: current_folder, nonce: mgmlp_ajax.nonce },
+					url: mgmlp_ajax.ajaxurl,
+					dataType: "json",
+					success: function (data) { 
+						jQuery('#folder-tree').jstree(true).settings.core.data = data;
+						jQuery('#folder-tree').jstree(true).refresh();			
+						//jQuery('#folder-tree').jstree(true).redraw(true);
 
 
+						jQuery("#folder-message").html('');
+					},
+					error: function (err){ 
+						alert(err.responseText)
+					}
+				});
+												
+    });
+		
         
     jQuery("#delete-media").click(function(){
         
+			jQuery("#folder-message").html('');			
+
+				if(jQuery("#current-folder-id").val() === undefined) 
+					var current_folder = sessionStorage.getItem('folder_id');
+				else
+					var current_folder = jQuery('#current-folder-id').val();
+				
         jQuery(".mgmlp-folder").prop('disabled', false);
         
         jQuery('.input-area').each(function(index) {
@@ -159,7 +222,7 @@ jQuery(document).ready(function(){
         jQuery('input[type=checkbox].mgmlp-media:checked').each(function() {  
           delete_ids[delete_ids.length] = jQuery(this).attr("id");
         });
-        
+								        
         if(delete_ids.length === 0) {
           alert('No items were selected.');
           return false;
@@ -170,26 +233,31 @@ jQuery(document).ready(function(){
           jQuery.ajax({
             type: "POST",
             async: true,
-            data: { action: "delete_maxgalleria_media", serial_delete_ids: serial_delete_ids, nonce: mgmlp_ajax.nonce },
+            data: { action: "delete_maxgalleria_media", serial_delete_ids: serial_delete_ids, parent_id: current_folder, nonce: mgmlp_ajax.nonce },
             //var delete_data = jQuery.serialize(data);
             url : mgmlp_ajax.ajaxurl,
-            dataType: "html",
+            dataType: "json",
             success: function (data) {
               jQuery("#ajaxloader").hide();            
-              jQuery("#folder-message").html(data);
+							
+							jQuery("#folder-message").html(data.message);
+							if(data.refresh)
+								jQuery("#mgmlp-file-container").html(data.files);						
+																						
             },
             error: function (err)
               { alert(err.responseText);}
           });
       } 
     });	
-		        
+        
     jQuery("#copy-media").click(function(){
       var copy_ids = new Array();
       jQuery('input[type=checkbox].mgmlp-media:checked').each(function() {  
         copy_ids[copy_ids.length] = jQuery(this).attr("id");
       });
             
+			jQuery("#folder-message").html('');			
       var serial_copy_ids = JSON.stringify(copy_ids.join());
       var folder_id = jQuery('#copy-select').val();
       var destination = jQuery("#copy-select option:selected").text();
@@ -200,12 +268,13 @@ jQuery(document).ready(function(){
         async: true,
         data: { action: "copy_media", folder_id: folder_id, destination: destination, serial_copy_ids: serial_copy_ids, nonce: mgmlp_ajax.nonce },
         url : mgmlp_ajax.ajaxurl,
-        dataType: "html",
+        dataType: "json",
         success: function (data) {
           jQuery("#ajaxloader").hide();
           jQuery(".mgmlp-media").prop('checked', false);
           jQuery(".mgmlp-folder").prop('checked', false);
-          jQuery("#folder-message").html(data);
+          jQuery("#folder-message").html(data.message);
+					
         },
         error: function (err)
           { 
@@ -224,8 +293,14 @@ jQuery(document).ready(function(){
       var serial_copy_ids = JSON.stringify(move_ids.join());
       var folder_id = jQuery('#move-select').val();
       var destination = jQuery("#move-select option:selected").text();
-      var current_folder = jQuery("#current-folder-id").val();      
-      
+      //var current_folder = jQuery("#current-folder-id").val();      
+			
+			if(jQuery("#current-folder-id").val() === undefined) 
+				var current_folder = sessionStorage.getItem('folder_id');
+			else
+				var current_folder = jQuery('#current-folder-id').val();
+			      
+			jQuery("#folder-message").html('');			
       jQuery("#ajaxloader").show();
       
       jQuery.ajax({
@@ -233,12 +308,15 @@ jQuery(document).ready(function(){
         async: true,
         data: { action: "move_media", current_folder: current_folder, folder_id: folder_id, destination: destination, serial_copy_ids: serial_copy_ids, nonce: mgmlp_ajax.nonce },
         url : mgmlp_ajax.ajaxurl,
-        dataType: "html",
+        dataType: "json",
         success: function (data) {
           jQuery("#ajaxloader").hide();
           jQuery(".mgmlp-media").prop('checked', false);
           jQuery(".mgmlp-folder").prop('checked', false);
-          jQuery("#folder-message").html(data);
+          jQuery("#folder-message").html(data.message);
+					if(data.refresh)
+					  jQuery("#mgmlp-file-container").html(data.files);						
+					
         },
         error: function (err)
           { 
@@ -250,6 +328,9 @@ jQuery(document).ready(function(){
         
 	
     jQuery("#add-to-gallery").click(function(){
+			
+			jQuery("#folder-message").html('');			
+			
       var gallery_image_ids = new Array();
       jQuery('input[type=checkbox].mgmlp-media:checked').each(function() {  
         gallery_image_ids[gallery_image_ids.length] = jQuery(this).attr("id");
@@ -285,7 +366,16 @@ jQuery(document).ready(function(){
     });	
     
     jQuery("#mgmlp-rename-file").click(function(){
+			
+			jQuery("#folder-message").html('');			
+			
+			if(jQuery("#current-folder-id").val() === undefined) 
+				var current_folder = sessionStorage.getItem('folder_id');
+			else
+				var current_folder = jQuery('#current-folder-id').val();
+			
     
+      //var current_folder = jQuery("#current-folder-id").val();      
       var image_id = 0;
       var new_file_name = jQuery('#new-file-name').val();
       jQuery('input[type=checkbox].mgmlp-media:checked').each(function() {  
@@ -310,8 +400,10 @@ jQuery(document).ready(function(){
         success: function (data) {
           jQuery("#ajaxloader").hide();
           jQuery("#folder-message").html(data);
+					jQuery('#new-file-name').val('');
           jQuery(".mgmlp-media").prop('checked', false);
           jQuery(".mgmlp-folder").prop('checked', false);
+					mlf_refresh(current_folder);
         },
         error: function (err) { 
           jQuery("#ajaxloader").hide();
@@ -373,7 +465,7 @@ jQuery(document).ready(function(){
     }, function() {
        jQuery('#folder-message').html('');
     });
-				        
+        
     jQuery('#mgmlp-toolbar a').hover(function() {
        jQuery('#folder-message').html(jQuery(this).attr('help')).fadeIn(200);
     }, function() {
@@ -385,18 +477,28 @@ jQuery(document).ready(function(){
     }, function() {
        jQuery('#folder-message').html('');
     });
-				
+		
+		
     jQuery("#sync-media").click(function(){      
-      var parent_folder = jQuery('#current-folder-id').val();
-			var title_text = jQuery('#mlp_title_text').val();      
-			var alt_text = jQuery('#mlp_alt_text').val();      
+      //var parent_folder = jQuery('#current-folder-id').val();
+			
+			jQuery("#folder-message").html('');			
+			
+			if(jQuery("#current-folder-id").val() === undefined) 
+				var parent_folder = sessionStorage.getItem('folder_id');
+			else
+				var parent_folder = jQuery('#current-folder-id').val();
+			
+			var mlp_title_text = jQuery('#mlp_title_text').val();
+			
+			var mlp_alt_text = jQuery('#mlp_alt_text').val();      
        
       jQuery("#ajaxloader").show();
       
       jQuery.ajax({
         type: "POST",
         async: true,
-        data: { action: "max_sync_contents", parent_folder: parent_folder, title_text: title_text, alt_text: alt_text, nonce: mgmlp_ajax.nonce },
+        data: { action: "max_sync_contents", parent_folder: parent_folder, title_text: mlp_title_text, alt_text: mlp_alt_text, nonce: mgmlp_ajax.nonce },
         url : mgmlp_ajax.ajaxurl,
         dataType: "html",
         success: function (data) {
@@ -413,12 +515,12 @@ jQuery(document).ready(function(){
           { alert(err.responseText);}
       });
        
-    });    
-				
+    });
+		
     jQuery("#seo-images").click(function(){			
 			jQuery("#folder-message").text("");
     });    
-		
+				
     jQuery("#mgmlp-regen-thumbnails").click(function(){
       var image_ids = new Array();
       jQuery('input[type=checkbox].mgmlp-media:checked').each(function() {   
@@ -429,7 +531,7 @@ jQuery(document).ready(function(){
         jQuery("#folder-message").html("No files were selected.");
 				return false;
 			}	
-            
+			            
       var serial_image_ids = JSON.stringify(image_ids.join());
       
       jQuery("#ajaxloader").show();
@@ -451,7 +553,7 @@ jQuery(document).ready(function(){
             alert(err.responseText);
           }
       });                
-    });	
+    });
 		
 		jQuery("#mgmlp-fix-media").click(function(){
 			
@@ -474,8 +576,8 @@ jQuery(document).ready(function(){
           }
       });                			
 			
-    });	
-
+    });			
+		
 		jQuery("#mlp-update-seo-settings").click(function(){
 						
 			var checked = "off";
@@ -500,14 +602,88 @@ jQuery(document).ready(function(){
           }
       });                
 			 			 
-		});
+		});		
 				
   });    
-        
+				
+		jQuery("#mgmlp-file-container").on("click", "#display_mlpp_images", function(){
+			var folder_id = jQuery(this).attr('folder_id');
+			var image_link = jQuery(this).attr('image_link');
+						
+			jQuery.ajax({
+				type: "POST",
+				async: true,
+				data: { action: "mlp_display_folder_contents_ajax", current_folder_id: folder_id, image_link: image_link, display_type: 1, nonce: mgmlp_ajax.nonce },
+				url: mgmlp_ajax.ajaxurl,
+				dataType: "html",
+				success: function (data) 
+					{ 
+						jQuery("#mgmlp-file-container").html(data); 
+					},
+						error: function (err)
+					{ alert(err.responseText)}
+					});
+    });
+		
+		jQuery("#mgmlp-file-container").on("click", "#display_mlpp_titles", function(){
+			var folder_id = jQuery(this).attr('folder_id');
+			var image_link = jQuery(this).attr('image_link');
+						
+			jQuery.ajax({
+				type: "POST",
+				async: true,
+				data: { action: "mlp_display_folder_contents_images_ajax", current_folder_id: folder_id, image_link: image_link, display_type: 2, nonce: mgmlp_ajax.nonce },
+				url: mgmlp_ajax.ajaxurl,
+				dataType: "html",
+				success: function (data) 
+					{ 
+						jQuery("#mgmlp-file-container").html(data); 						
+					},
+						error: function (err)
+					{ alert(err.responseText)}
+					});
+    });
+	
+    jQuery("#mgmlp-create-new-gallery").click(function(){
+      
+			jQuery("#folder-message").html('');			
+			
+      var new_gallery_name = jQuery('#new-gallery-name').val();
+      //var parent_folder = jQuery('#current-folder-id').val();
+			
+			if(jQuery("#current-folder-id").val() === undefined) 
+				var parent_folder = sessionStorage.getItem('folder_id');
+			else
+				var parent_folder = jQuery('#current-folder-id').val();
+			
+      
+      jQuery("#ajaxloader").show();
+      
+      jQuery.ajax({
+        type: "POST",
+        async: true,
+        data: { action: "mlpp_create_new_ng_gallery", new_gallery_name: new_gallery_name, parent_folder: parent_folder, nonce: mgmlp_ajax.nonce },
+        url : mgmlp_ajax.ajaxurl,
+        dataType: "html",
+        success: function (data) {
+          jQuery("#ajaxloader").hide();          
+          jQuery("#folder-message").html(data);
+        },
+        error: function (err)
+          { alert(err.responseText);}
+      });
+           	
+  });  
+			       
 function slideonlyone(thechosenone) {
+	console.log(thechosenone);
   jQuery('.input-area').each(function(index) {
     if (jQuery(this).attr("id") == thechosenone) {
        jQuery(this).slideDown(200);
+			 if(thechosenone == 'new-folder-area')
+				 jQuery("#new-folder-name").focus();
+			 if(thechosenone == 'rename-area')
+				 jQuery("#new-file-name").focus();			 			 
     }
     else {
        jQuery(this).slideUp(600);
@@ -611,7 +787,7 @@ function sendFileToServer(formData,status)
             status.setProgress(100);
             jQuery("#ajaxloader").hide();
             jQuery("#mgmlp-file-container").html(data);
-						
+
 		        jQuery('li a.media-attachment').draggable({
 							cursor: 'move',
 							//helper: 'clone'
@@ -632,7 +808,7 @@ function sendFileToServer(formData,status)
 								drop: handleDropEvent
 						});
 						
-				},
+        },
         error: function (err){ 
           jQuery("#ajaxloader").hide();
           alert(err.responseText);
@@ -679,6 +855,7 @@ function createStatusbar(obj)
         if(parseInt(progress) >= 100)
         {            
             this.abort.hide();            
+            //jQuery(".statusbar").remove();
             this.statusbar.remove();
         }
     }
@@ -694,9 +871,8 @@ function createStatusbar(obj)
     }
 }
 
-// for draging and droping multiple files
 function handleDropEvent(event, ui ) {
-			
+	
 	var move_ids = new Array();
 	var items = ui.helper.children();
 	items.each(function() {  
@@ -707,13 +883,24 @@ function handleDropEvent(event, ui ) {
 	  move_ids = new Array();
 		move_ids[move_ids.length] =  ui.draggable.attr("id");
 	}	
-	
+		
   var droppableId = jQuery(this).attr("folder");	
 	var serial_copy_ids = JSON.stringify(move_ids.join());
 	var folder_id = droppableId;
 	var destination = '';
-	var current_folder = jQuery("#current-folder-id").val();      
-
+	//var current_folder = jQuery("#current-folder-id").val();      
+	
+	if(jQuery("#current-folder-id").val() === undefined) 
+		var current_folder = sessionStorage.getItem('folder_id');
+	else
+		var current_folder = jQuery('#current-folder-id').val();
+		
+	var operation_type = jQuery('#move-copy-switch:checkbox:checked').length > 0;
+//	if(operation_type)
+//	  console.log('move');
+//	else
+//	  console.log('copy');
+	
 	jQuery("#ajaxloader").show();
 
 	jQuery.ajax({
@@ -721,12 +908,12 @@ function handleDropEvent(event, ui ) {
 		async: true,
 		data: { action: "move_media", current_folder: current_folder, folder_id: folder_id, destination: destination, serial_copy_ids: serial_copy_ids, nonce: mgmlp_ajax.nonce },
 		url : mgmlp_ajax.ajaxurl,
-		dataType: "html",
+		dataType: "json",
 		success: function (data) {
 			jQuery("#ajaxloader").hide();
 			jQuery(".mgmlp-media").prop('checked', false);
 			jQuery(".mgmlp-folder").prop('checked', false);
-			jQuery("#folder-message").html(data);
+			jQuery("#folder-message").html(data.message);
 		},
 		error: function (err)
 			{ 
@@ -734,4 +921,58 @@ function handleDropEvent(event, ui ) {
 				alert(err.responseText);
 			}
 	});                	
+}
+
+function mlf_refresh(folder_id) {
+	var image_link = '1';
+  jQuery("#folder-message").html('Refreshing...');
+	
+	console.log('mlf_refresh');
+	jQuery.ajax({
+		type: "POST",
+		async: true,
+		//data: { action: "mlp_display_folder_contents_ajax", current_folder_id: folder_id, image_link: image_link, display_type: 1, nonce: mgmlp_ajax.nonce },
+		data: { action: "mlp_load_folder", folder: folder_id, nonce: mgmlp_ajax.nonce },
+		url: mgmlp_ajax.ajaxurl,
+		dataType: "html",
+		success: function (data) 
+			{ 
+				jQuery("#mgmlp-file-container").html(data); 
+				jQuery("#folder-message").html(''); 				
+			},
+				error: function (err)
+			{ alert(err.responseText)}
+			});
+	
+}
+
+function mlf_refresh_folders(folder_id) {
+  jQuery("#folder-message").html('Refreshing folders...');
+  //var folder_id = jQuery('#current-folder-id').val();
+	
+	if(jQuery("#current-folder-id").val() === undefined) 
+		var folder_id = sessionStorage.getItem('folder_id');
+	else
+		var folder_id = jQuery('#current-folder-id').val();
+	
+	jQuery.ajax({
+		type: "POST",
+		async: true,
+		//data: { action: "display_folder_nav_ajax", folder: folder_id, nonce: mgmlp_ajax.nonce },
+		data: { action: "mlp_get_folder_data", current_folder_id: folder_id, nonce: mgmlp_ajax.nonce },
+		url: mgmlp_ajax.ajaxurl,
+		dataType: "json",
+		success: function (data) { 
+			jQuery('#folder-tree').jstree(true).settings.core.data = data;
+			jQuery('#folder-tree').jstree(true).refresh();			
+			//jQuery('#folder-tree').jstree(true).redraw(true);
+			
+			
+      jQuery("#folder-message").html('');
+		},
+		error: function (err){ 
+			alert(err.responseText)
+		}
+	});
+	
 }

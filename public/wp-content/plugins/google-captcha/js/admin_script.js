@@ -16,10 +16,16 @@
 			$( '.gglcptch_verified, #gglcptch-test-keys, #gglcptch-test-block' ).hide();
 		} );
 
-		$( 'select[name="gglcptch_theme_v2"]' ).on( "change", function() {
-			$( '.gglcptch_size_sample' ).hide();
-			var theme = $( this ).find( 'option:selected' ).val();
-			$( '.gglcptch_size_sample_' + theme ).show();
+		$( '.gglcptch-settings-accordion' ).accordion(
+			{
+				collapsible: true,
+				heightStyle: "content"
+			}
+		);
+
+		/* Prevent jQuery accordion collapsing on link click */
+		$( ".gglcptch-settings-accordion a" ).on( "click", function( event ) {
+			event.stopPropagation();
 		} );
 
 		/**
@@ -45,8 +51,9 @@
 	$( document ).on( 'click', '#gglcptch-test-keys a', function( e ) {
 		e.preventDefault();
 
-		if ( ! $( '#gglcptch-test-block' ).length )
-			$( this ).closest( 'p' ).after( '<div id="gglcptch-test-block" />' );
+		if ( ! $( '#gglcptch-test-block' ).length ) {
+			$( '#gglcptch-test-keys' ).after( '<div id="gglcptch-test-block"></div>' );
+		}
 
 		$( '.gglcptch-test-results' ).remove();
 		$( '#gglcptch-test-block' ).load( $( this ).prop( 'href' ), function() {

@@ -11,9 +11,12 @@ function gglcptch_alert_fail_message( e ) {
 
 function gglcptch_onload_callback() {
 	( function( $ ) {
+		if ( '' != gglcptch_pre.custom_callback ) {
+			eval( gglcptch_pre.custom_callback );
+		}
 		gglcptch_pre.is_loaded = true;
 		$( document ).ready( function() {
-			$( 'form' ).find( 'input:submit, button' ).filter('[data-gglcptch_disabled]')
+			$( 'form input:submit, form button' ).filter('[data-gglcptch_disabled]')
 			.removeAttr( 'disabled' )
 			.removeAttr( 'data-gglcptch_disabled' )
 			.each( function() {

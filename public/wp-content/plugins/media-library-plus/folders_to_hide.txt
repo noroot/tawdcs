@@ -12,8 +12,10 @@ gravity_forms
 h5p
 html_to_wp
 js_composer
+magictoolbox_cache
 maxbuttons
 maxbuttons-pro
+mg-backup
 pb_backupbuddy
 pluginbuddy_mobile
 photo-gallery
@@ -27,6 +29,7 @@ wc-logs
 woocommerce_uploads
 wordpress-popular-posts
 wpallimport
+wpallexport
 wpcf7_captcha
 wp-clone
 wp-post-to-pdf-cache
