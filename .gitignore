@@ -49,7 +49,7 @@ bower_components
 # --------------------
 # Composer Files
 # --------------------
-vendor/
+#vendor/
 
 # --------------------
 # App Files

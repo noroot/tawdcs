@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package packagerversion="1.8.0" version="2.0" xmlns="http://pear.php.net/dtd/package-2.0" xmlns:tasks="http://pear.php.net/dtd/tasks-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pear.php.net/dtd/tasks-1.0
+    http://pear.php.net/dtd/tasks-1.0.xsd
+    http://pear.php.net/dtd/package-2.0
+    http://pear.php.net/dtd/package-2.0.xsd">
+ <name>Etsy_PHPUnit_Extensions</name>
+ <channel>etsy.github.com/phpunit-extensions</channel>
+ <summary>Etsy extensions for PHPUnit.</summary>
+ <description>
+   Etsy extensions for PHPUnit.
+ </description>
+ <lead>
+  <name>Laura Beth Lincoln Denker</name>
+  <user>elblinkin</user>
+  <email>github@elblinkin.info</email>
+  <active>yes</active>
+ </lead>
+ <date>2012-05-03</date>
+ <version>
+  <release>0.6.0</release>
+  <api>0.6.0</api>
+ </version>
+ <stability>
+  <release>beta</release>
+  <api>beta</api>
+ </stability>
+ <license uri="http://www.opensource.org/licenses/mit-license.php">MIT</license>
+ <notes>-</notes>
+ <contents>
+   <dir name="/">
+    <file name="LICENSE" role="doc" />
+    <file name="README.md" role="doc" />
+    <dir name="PHPUnit">
+     <dir name="Experimental">
+      <file name="FileSystemTestSuite.php" role="php" />
+      <dir name="PHPUI">
+       <file name="Command.php" role="php" />
+       <file name="ResultPrinter.php" role="php" />
+      </dir>
+     </dir>
+     <dir name="Extensions">
+      <dir name="Assert">
+       <file name="More.php" role="php" />
+      </dir>
+      <dir name="Constraint">
+       <file name="ArrayEqualsNoOrder.php" role="php" />
+       <file name="ArrayHasKeyValuePair.php" role="php" />
+       <file name="EqualsClosure.php" role="php" />
+       <file name="HasItems.php" role="php" />
+       <file name="StringMatchIgnoreWhitespace.php" role="php" />
+      </dir>
+      <dir name="Database">
+       <dir name="DataSet">
+        <file name="ArrayDataSet.php" role="php" />
+       </dir>
+      </dir>
+      <dir name="Helper">
+       <file name="AccessibleObject.php" role="php" />
+      </dir>
+      <dir name="Mockery">
+        <file name="TestCase.php" role="php" />
+      </dir>
+      <dir name="MockObject">
+        <dir name="Stub">
+          <file name="ReturnMapping.php" role="php" />
+          <dir name="ReturnMapping">
+            <file name="Builder.php" role="php" />
+            <file name="Entry.php" role="php" />
+            <file name="EntryBuilder.php" role="php" />
+          </dir>
+        </dir>
+      </dir>
+      <dir name="MultipleDatabase">
+       <dir name="DatabaseConfig">
+        <file name="Builder.php" role="php" />
+       </dir>
+       <file name="DatabaseConfig.php" role="php" />
+       <file name="TestCase.php" role="php" />
+       <file name="Tester.php" role="php" />
+      </dir>
+     </dir>
+    </dir>
+   </dir>
+ </contents>
+ <dependencies>
+  <required>
+   <php>
+    <min>5.3.6</min>
+   </php>
+   <pearinstaller>
+    <min>1.9.1</min>
+   </pearinstaller>
+   <package>
+    <name>PHPUnit</name>
+    <channel>pear.phpunit.de</channel>
+    <min>3.6.10</min>
+   </package>
+   <package>
+    <name>Hamcrest</name>
+    <channel>hamcrest.googlecode.com/svn/pear</channel>
+    <min>1.0.0</min>
+   </package>
+   <package>
+    <name>Mockery</name>
+    <channel>pear.survivethedeepend.com</channel>
+    <min>0.6.0</min>
+   </package>
+  </required>
+ </dependencies>
+ <phprelease />
+</package>
