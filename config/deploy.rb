@@ -2,7 +2,7 @@
 lock '3.6.1'
 
 set :application, 'tawdcs'
-set :repo_url, 'git@gitlab.com:overmind/tawdcs.git'
+set :repo_url, 'git@github.com:noroot/tawdcs.git'
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
