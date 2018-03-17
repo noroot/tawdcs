@@ -24,11 +24,17 @@ get_header(); ?>
 	</div>
     </div>
     <div class="container taw-container">
-	<div class="row">
+	<div class="row pb-3">
 	    <div class="col-md-12">
 		<a href="http://ko.tawdcs.org/ko/" target="_blank"><img src="/wp-content/themes/tawdcs/images/KO_banner.jpg" /></a>
 	    </div>
 	</div>
+	<div class="row">
+	    <div class="col-md-12">
+		<a href="http://fighterpilotpodcast.com/?utm_source=tawdcs" target="_blank"><img src="/wp-content/themes/tawdcs/images/FighterPilotPodcastLogo.jpg" /></a>
+	    </div>
+	</div>
+
     </div>
     <div class="container taw-container" style="display:none;">
 	<div class="col-md-12">
