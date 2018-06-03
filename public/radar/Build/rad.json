@@ -1,9 +1,11 @@
 {
-"TOTAL_MEMORY": 268435456,
+"companyName": "Alexandru Romanciuc",
+"productName": "F15RadarSim",
 "dataUrl": "rad.data.unityweb",
 "asmCodeUrl": "rad.asm.code.unityweb",
 "asmMemoryUrl": "rad.asm.memory.unityweb",
 "asmFrameworkUrl": "rad.asm.framework.unityweb",
+"TOTAL_MEMORY": 268435456,
 "graphicsAPI": ["WebGL 2.0", "WebGL 1.0"],
 "webglContextAttributes": {"preserveDrawingBuffer": false},
 "backgroundUrl": "rad.jpg",
